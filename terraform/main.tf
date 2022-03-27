@@ -59,8 +59,8 @@ resource "aws_cognito_user_pool" "example" {
     developer_only_attribute = false
     mutable                  = true
     name                     = "email"
+    required                 = true
 
-    required = true
     string_attribute_constraints {
       max_length = "2048"
       min_length = "0"
@@ -80,7 +80,16 @@ resource "aws_cognito_user_pool_client" "example_pub" {
   name         = "${local.prefix}example-pub"
   user_pool_id = aws_cognito_user_pool.example.id
 
-  access_token_validity = 60
+  access_token_validity  = 60
+  id_token_validity      = 60
+  refresh_token_validity = 30
+
+  token_validity_units {
+    access_token  = "minutes"
+    id_token      = "minutes"
+    refresh_token = "days"
+  }
+
   allowed_oauth_flows = [
     "code",
   ]
@@ -98,57 +107,6 @@ resource "aws_cognito_user_pool_client" "example_pub" {
     "ALLOW_REFRESH_TOKEN_AUTH",
     "ALLOW_USER_SRP_AUTH",
   ]
-  id_token_validity             = 60
   logout_urls                   = []
   prevent_user_existence_errors = "ENABLED"
-  # read_attributes = [
-  #   "address",
-  #   "birthdate",
-  #   "email",
-  #   "email_verified",
-  #   "family_name",
-  #   "gender",
-  #   "given_name",
-  #   "locale",
-  #   "middle_name",
-  #   "name",
-  #   "nickname",
-  #   "phone_number",
-  #   "phone_number_verified",
-  #   "picture",
-  #   "preferred_username",
-  #   "profile",
-  #   "updated_at",
-  #   "website",
-  #   "zoneinfo",
-  # ]
-  refresh_token_validity = 30
-  # supported_identity_providers = [
-  #   "COGNITO",
-  # ]
-  # write_attributes = [
-  #   "address",
-  #   "birthdate",
-  #   "email",
-  #   "family_name",
-  #   "gender",
-  #   "given_name",
-  #   "locale",
-  #   "middle_name",
-  #   "name",
-  #   "nickname",
-  #   "phone_number",
-  #   "picture",
-  #   "preferred_username",
-  #   "profile",
-  #   "updated_at",
-  #   "website",
-  #   "zoneinfo",
-  # ]
-
-  token_validity_units {
-    access_token  = "minutes"
-    id_token      = "minutes"
-    refresh_token = "days"
-  }
 }
