@@ -1,8 +1,17 @@
 import type { NextPage } from 'next';
+import { useAuthenticator } from '@aws-amplify/ui-react';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
+  const { user, signOut } = useAuthenticator((context) => [context.user]);
+
+  console.log(user);
+  const userSession = user.getSignInUserSession();
+  console.log(userSession?.getIdToken());
+  console.log(userSession?.getRefreshToken());
+  console.log(userSession?.getAccessToken());
+
   return (
     <div className={styles.container}>
       <Head>
@@ -17,7 +26,7 @@ const Home: NextPage = () => {
         </h1>
 
         <p className={styles.description}>
-          <button>Login</button>
+          <button onClick={signOut}>Sign out</button>
         </p>
       </main>
     </div>

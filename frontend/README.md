@@ -5,6 +5,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
+cat <<EOF > .env.local
+NEXT_PUBLIC_USER_POOL_ID=XX-XXXX-X_abcd1234
+NEXT_PUBLIC_USER_POOL_WEB_CLIENT_ID=a1b2c3d4e5f6g7h8i9j0k1l2m3
+EOF
+
 npm run dev
 # or
 yarn dev
