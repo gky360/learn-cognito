@@ -1,1 +1,1 @@
-# learn-cognito-hosted-ui
+# learn-cognito
