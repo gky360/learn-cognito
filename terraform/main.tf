@@ -76,11 +76,6 @@ resource "aws_cognito_user_pool" "example" {
   }
 }
 
-resource "aws_cognito_user_pool_domain" "example" {
-  domain       = "${local.prefix}example"
-  user_pool_id = aws_cognito_user_pool.example.id
-}
-
 resource "aws_cognito_user_pool_client" "example_pub" {
   name         = "${local.prefix}example-pub"
   user_pool_id = aws_cognito_user_pool.example.id
