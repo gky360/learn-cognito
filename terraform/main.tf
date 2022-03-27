@@ -92,6 +92,7 @@ resource "aws_cognito_user_pool_client" "example_pub" {
   allowed_oauth_flows_user_pool_client = true
   allowed_oauth_scopes = [
     "email",
+    "openid",
   ]
   callback_urls = [
     "http://localhost:3000",
