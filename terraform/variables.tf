@@ -1,6 +1,6 @@
 variable "project_name" {
   type    = string
-  default = "learn-cognito"
+  default = "learn-cgnt"
 }
 
 variable "env_name" {
