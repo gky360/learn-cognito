@@ -69,4 +69,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
 }
 
-export default withAuthenticator(MyApp, { hideSignUp: true });
+export default withAuthenticator(MyApp, {
+  hideSignUp: true,
+  loginMechanisms: ['email'],
+});
